@@ -1,0 +1,17 @@
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\bin\Debug\EmployeeCatalogue3.exe.config
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\bin\Debug\EmployeeCatalogue3.exe
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\bin\Debug\EmployeeCatalogue3.pdb
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3.csprojAssemblyReference.cache
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\MainWindow.g.cs
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\View\EmployeeView.g.cs
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\App.g.cs
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3_MarkupCompile.cache
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3_MarkupCompile.lref
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\MainWindow.baml
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\View\EmployeeView.baml
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3.g.resources
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3.Properties.Resources.resources
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3.csproj.GenerateResource.cache
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3.csproj.CoreCompileInputs.cache
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3.exe
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3.pdb
