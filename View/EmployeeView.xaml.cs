@@ -106,21 +106,21 @@ namespace EmployeeCatalogue3.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-         //   DataContext = new MVVMButtonClickViewModel();
+            //   DataContext = new MVVMButtonClickViewModel();
 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-         //   DataContext = new Button2();
+            //   DataContext = new Button2();
 
         }
 
         private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
 
-            
-           
+
+
             SqlConnection con = new SqlConnection();
             con.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
             con.Open();
@@ -156,12 +156,12 @@ namespace EmployeeCatalogue3.View
                 con.Close();
             }
 
-            
+
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            
+
 
             SqlConnection con = new SqlConnection();
             con.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
@@ -196,7 +196,7 @@ namespace EmployeeCatalogue3.View
 
         private void ctmView(object sender, RoutedEventArgs e)
         {
-            
+
             DataRowView dataRowView = (DataRowView)employeeGrid.SelectedItem;
             string name = (dataRowView["Name"]).ToString();
             string surname = (dataRowView["Surname"]).ToString();
@@ -204,26 +204,26 @@ namespace EmployeeCatalogue3.View
             string gender = (dataRowView["Gender"]).ToString();
             string homeAddress = (dataRowView["HomeAddress"]).ToString();
 
-            
 
-            MessageBox.Show("Name : " + name +  "\n" + "Surname : " + surname + "\n" + "Date Of Birth : " + 
+
+            MessageBox.Show("Name : " + name + "\n" + "Surname : " + surname + "\n" + "Date Of Birth : " +
                 dateOfBirth + "\n" + "Gender : " + gender + "\n" + "Home Address : " + homeAddress, name.ToUpper() + "'s DETAILS");
 
-       
+
         }
 
-     /*   private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            
-        }
-        */
+        /*   private void Button_Click_3(object sender, RoutedEventArgs e)
+           {
+
+           }
+           */
 
         private void ctmEdit(object sender, RoutedEventArgs e)
         {
-            
+
             btnShowAdd.IsEnabled = false;
 
-              var visibility = grdEdit.Visibility;
+            var visibility = grdEdit.Visibility;
 
             switch (visibility)
             {
@@ -248,7 +248,48 @@ namespace EmployeeCatalogue3.View
             cboEditGender.Text = gender;
             txtEditHomeAddress.Text = homeAddress;
         }
+
+
+
+        private void txtEmployeeSearch(object sender, KeyEventArgs e)
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
+            con.Open();
+
+            try
+            {
+                btnShowAdd.IsEnabled = false;
+                  SqlCommand cmd = new SqlCommand();
+               cmd.CommandText = "SELECT * FROM Employee WHERE Name LIKE'" + txtSearchEmployeee.Text.ToString() + "%" + "' ";
+
+               
+
+             //   cmd.CommandText = "SELECT * FROM Employee WHERE Name LIKE'" + txtSearchEmployeee.Text.ToString() + "%" + "OR Surname LIKE " +
+              //     txtSearchEmployeee.Text.ToString() + "%" + "' ";
+
+
+
+                cmd.Connection = con;
+                cmd.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dt = new DataTable("employee");
+                da.Fill(dt);
+
+                employeeGrid.ItemsSource = dt.DefaultView;
+             //   MessageBox.Show(cmd.CommandText);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+
+            finally
+            {
+                con.Close();
+            }
+
+        }
     }
-
-
 }

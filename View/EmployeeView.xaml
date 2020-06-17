@@ -56,9 +56,9 @@
 
             </Rectangle>
 
+         <!--   <Button Content="search" Name="btnTheSearch" Click="btnTheSearch_Click"/> -->
 
-
-            <TextBox x:Name="txtSearchEmployee" ToolTip="Search for employee details" HorizontalAlignment="Left" Height="23" Margin="670,6,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120">
+            <TextBox x:Name="txtSearchEmployeee" ToolTip="Search for employee details" HorizontalAlignment="Left" Height="23" Margin="670,6,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyUp="txtEmployeeSearch">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="5"/>
