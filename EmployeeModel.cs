@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EmployeeCatalogue3
 {
-    class EmployeeModel
+    class EmployeeModel : INotifyPropertyChanged
     {
 
         private int employeeId;
@@ -53,8 +54,17 @@ namespace EmployeeCatalogue3
             set;
 
         }
-    
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void RaisePropertyChanged(string propertyName)
+        {
+            if(PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
 
 

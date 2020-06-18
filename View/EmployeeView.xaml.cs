@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using static EmployeeCatalogue3.EmployeeViewModel;
 
 namespace EmployeeCatalogue3.View
 
@@ -46,36 +47,9 @@ namespace EmployeeCatalogue3.View
         DataTable dt;
         private void bindDataGrid()
         {
-
-            //            DataContext = new showGridPlease();
-
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
-            con.Open();
-            try
-            {
-
-
-                cmd.CommandText = "SELECT * FROM [Employee]";
-                cmd.Connection = con;
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("employee");
-                da.Fill(dt);
-
-                employeeGrid.ItemsSource = dt.DefaultView;
-
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-
-            finally
-            {
-                con.Close();
-            }
+            DataContext = new gridShow(employeeGrid);
         }
+        
 
         private void btnShowAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -268,8 +242,9 @@ namespace EmployeeCatalogue3.View
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 dt = new DataTable("employee");
                 da.Fill(dt);
-
+                
                 employeeGrid.ItemsSource = dt.DefaultView;
+                
             }
 
             catch (Exception ex)

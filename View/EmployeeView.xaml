@@ -80,7 +80,7 @@
 
                         <DataGridTextColumn Binding="{Binding Name}" Header="NAME" Width="160"/>
                         <DataGridTextColumn Binding="{Binding Surname}" Header="SURNAME" Width="160"/>
-                        <DataGridTextColumn Binding="{Binding DOB}" Header="DATE OF BIRTH" Width="AUTO"/>
+                        <DataGridTextColumn Binding="{Binding DateOfBirth}" Header="DATE OF BIRTH" Width="AUTO"/>
                         <DataGridTextColumn Binding="{Binding Gender}" Header="GENDER" Width="AUTO" x:Name="gender">
                             <DataGridTextColumn.ElementStyle>
 
