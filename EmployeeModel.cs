@@ -19,8 +19,16 @@ namespace EmployeeCatalogue3
 
         public int EmployeeId
         {
-            get;
-            set;
+            get
+            {
+                return employeeId;
+            }
+
+            set
+            {
+                employeeId = value;
+                RaisePropertyChanged("employeeId");
+            }
         }
 
         public string Name

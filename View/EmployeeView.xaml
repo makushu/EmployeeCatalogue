@@ -71,7 +71,7 @@
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="View" Click="ctmView"></MenuItem>
-                            <MenuItem Header="Edit" Click="ctmEdit"></MenuItem>
+                            <MenuItem Header="Edit" Click="ctmEdit" ></MenuItem>
 
                         </ContextMenu>
                     </DataGrid.ContextMenu>

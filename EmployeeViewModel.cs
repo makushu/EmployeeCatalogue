@@ -56,35 +56,167 @@ namespace EmployeeCatalogue3
         }
 
 
-        /*
-        public class addEmployee
+
+
+
+        public class contextMenuView
         {
-            public addEmployee(DataGrid dataGrid)
+            public contextMenuView(DataGrid dataGrid)
+            {
+                DataRowView dataRowView = (DataRowView)dataGrid.SelectedItem;
+                string name = (dataRowView["Name"]).ToString();
+                string surname = (dataRowView["Surname"]).ToString();
+                string dateOfBirth = (dataRowView["DateOfBirth"]).ToString();
+                string gender = (dataRowView["Gender"]).ToString();
+                string homeAddress = (dataRowView["HomeAddress"]).ToString();
+
+
+
+                MessageBox.Show("Name : " + name + "\n" + "Surname : " + surname + "\n" + "Date Of Birth : " +
+                    dateOfBirth + "\n" + "Gender : " + gender + "\n" + "Home Address : " + homeAddress, name.ToUpper() + "'s DETAILS");
+
+
+                
+            }
+        }
+
+
+
+
+        public class contextMenuEdit
+        {
+            public contextMenuEdit(Grid grid, DataGrid dataGrid, TextBox id, TextBox name, TextBox surname, DatePicker dateOfBirth, ComboBox gender, TextBox homeAddress)
             {
 
+                var visibility = grid.Visibility;
+
+                switch (visibility)
+                {
+                    case Visibility.Hidden: grid.Visibility = Visibility.Collapsed; break;
+                    case Visibility.Visible: grid.Visibility = Visibility.Hidden; break;
+                    case Visibility.Collapsed: grid.Visibility = Visibility.Visible; break;
+                } 
+
+                /*
+                DataRowView dataRowView = (DataRowView)dataGrid.SelectedItem;
+                id.Text = (dataRowView["EmployeeId"]).ToString();
+                name.Text = (dataRowView["Name"]).ToString();
+                surname.Text = (dataRowView["Surname"]).ToString();
+                dateOfBirth.Text = (dataRowView["DateOfBirth"]).ToString();
+                gender.Text = (dataRowView["Gender"]).ToString();
+                homeAddress.Text = (dataRowView["HomeAddress"]).ToString();
+
+                /*
+                DataRowView dataRowView = (DataRowView)employeeGrid.SelectedItem;
+                txtEditEmployeeId.Text = (dataRowView["EmployeeId"]).ToString();
+                txtEditName.Text = (dataRowView["Name"]).ToString();
+                txtEditSurname.Text = (dataRowView["Surname"]).ToString();
+                dpEditDateOfBirth.Text = (dataRowView["DateOfBirth"]).ToString();
+                cboEditGender.Text = (dataRowView["Gender"]).ToString();
+                txtEditHomeAddress.Text = (dataRowView["HomeAddress"]).ToString();
+                */
+
+            }
+        }
+
+
+        public class buttonShowGrid
+        {
+            public buttonShowGrid(Grid grid)
+            {
+                var visibility = grid.Visibility;
+
+                switch (visibility)
+                {
+                    case Visibility.Hidden: grid.Visibility = Visibility.Collapsed; break;
+                    case Visibility.Visible: grid.Visibility = Visibility.Hidden; break;
+                    case Visibility.Collapsed: grid.Visibility = Visibility.Visible; break;
+                }
+
+            }
+        }
+
+
+        public class searchEmployee
+        {
+            public searchEmployee(DataGrid dataGrid, Button add, Button edit, TextBox textBox)
+            {
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
                 con.Open();
 
                 try
                 {
+                    /*
+                    if(textBox.Text != null)
+                    {
+                        add.IsEnabled = false;
+                        edit.IsEnabled = false;
+                    }
+                    */
+                    
                     SqlCommand cmd = new SqlCommand();
-                    //   btnShowEdit.IsEnabled = false;
-                    cmd.CommandText = "INSERT INTO Employee(Name, Surname, DateOfBirth, Gender, HomeAddress) VALUES('" + txtAddName.Text.ToString() + "', '" + txtAddSurname.Text.ToString() + "' , '" + dpAddDateOfBirth.Text.ToString() + "', '" + cboAddGender.Text.ToString() + "',  '" + txtAddHomeAddress.Text.ToString() + "')";
+
+                    cmd.CommandText = "SELECT * FROM Employee WHERE Name LIKE'" + "%" + textBox.Text.ToString() + "%" + "' OR Surname LIKE '" + "%" + textBox.Text.ToString() + "%" + "' OR HomeAddress LIKE '" + "%" + textBox.Text.ToString() + "%" + "' ";
 
                     cmd.Connection = con;
                     cmd.ExecuteNonQuery();
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    dt = new DataTable("employee");
+                    DataTable dt = new DataTable("employee");
                     da.Fill(dt);
 
-                    employeeGrid.ItemsSource = dt.DefaultView;
-                    MessageBox.Show(txtAddName.Text.ToString() + " " + txtAddSurname.Text.ToString() + " has been successfully added");
-                    txtAddName.Text = "";
-                    txtAddSurname.Text = "";
-                    dpAddDateOfBirth.Text = "";
-                    cboAddGender.Text = "";
-                    txtAddHomeAddress.Text = "";
+                    dataGrid.ItemsSource = dt.DefaultView;
+                    
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+
+                finally
+                {
+                    con.Close();
+                    
+                }
+
+
+
+            }
+        }
+
+
+
+
+
+        public class addEmployee
+        {
+            public addEmployee(DataGrid dataGrid, Button button, TextBox name, TextBox surname, DatePicker dateOfBirth, ComboBox gender, TextBox homeAddress)
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
+                con.Open();
+
+                try
+                {
+                    SqlCommand sqlCommand = new SqlCommand();
+
+                    button.IsEnabled = false;
+                    sqlCommand.CommandText = "INSERT INTO Employee(Name, Surname, DateOfBirth, Gender, HomeAddress) VALUES('" + name.Text.ToString() + "', '" + surname.Text.ToString() + "' , '" + dateOfBirth.Text.ToString() + "', '" + gender.Text.ToString() + "',  '" + homeAddress.Text.ToString() + "')";
+
+                    sqlCommand.Connection = con;
+                    sqlCommand.ExecuteNonQuery();
+                    SqlDataAdapter da = new SqlDataAdapter(sqlCommand);
+                    DataTable dataTable = new DataTable("employee");
+                    da.Fill(dataTable);
+                    
+                    dataGrid.ItemsSource = dataTable.DefaultView;
+                    MessageBox.Show(name.Text.ToString() + " " + surname.Text.ToString() + " has been successfully added");
+                    name.Text = "";
+                    surname.Text = "";
+                    dateOfBirth.Text = "";
+                    gender.Text = "";
+                    homeAddress.Text = "";
                 }
 
                 catch (Exception ex)
@@ -97,61 +229,51 @@ namespace EmployeeCatalogue3
                     con.Close();
                 }
 
+            }
+
+        }
+
+
+        public class editEmployee
+        {
+            public editEmployee(DataGrid dataGrid, Button button, TextBox name, TextBox surname, DatePicker dateOfBirth, ComboBox gender, TextBox homeAddress, TextBox id)
+            {
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
+                con.Open();
+
+                try
+                {
+                    SqlCommand sqlCommand = new SqlCommand();
+
+                    button.IsEnabled = false;
+                    sqlCommand.CommandText = "UPDATE Employee SET Name='" + name.Text.ToString() + "',Surname='" + surname.Text.ToString() + "',DateOfBirth='" + dateOfBirth.Text.ToString() + "',Gender='" + gender.Text.ToString() + "',HomeAddress='" + homeAddress.Text.ToString() + "' WHERE EmployeeId ='" + id.Text.ToString() + "' ";
+
+                    sqlCommand.Connection = con;
+                    sqlCommand.ExecuteNonQuery();
+                    SqlDataAdapter da = new SqlDataAdapter(sqlCommand);
+                    DataTable dataTable = new DataTable("employee");
+                    da.Fill(dataTable);
+
+                    dataGrid.ItemsSource = dataTable.DefaultView;
+                    MessageBox.Show(name.Text.ToString() + " " + surname.Text.ToString() + " has been successfully edited");
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+
+                finally
+                {
+                    con.Close();
+                }
 
             }
         }
-        */
+                
                 /*
-                 public void showTheGridPlease()
-                 {
-                     SqlCommand cmd = new SqlCommand();
-                     DataTable dt;
-
-                     SqlConnection con = new SqlConnection();
-                     con.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
-                     con.Open();
-                     try
-                     {
-
-
-                         cmd.CommandText = "SELECT * FROM [Employee]";
-                         cmd.Connection = con;
-                         SqlDataAdapter da = new SqlDataAdapter(cmd);
-                         DataTable dt = new DataTable("employee");
-                         da.Fill(dt);
-
-                         employeeGrid.ItemsSource = dt.DefaultView;
-
-                     }
-
-                     catch (Exception ex)
-                     {
-                         MessageBox.Show(ex.Message.ToString());
-                     }
-
-                     finally
-                     {
-                         con.Close();
-                     }
-
-                 }
-
-
-                 public int EmployeeId
-                 {
-                     get => this.employeeId;
-                     set
-                     {
-                         if (employeeId == value) // check if value changed
-                             return; // do nothing if value same
-
-                         employeeId = value; // change value
-                         OnPropertyChanged("employeeId"); // pass changed property name
-                     }
-                 }
-
-
-
+                
 
              public class MVVMButtonClickViewModel
              {
