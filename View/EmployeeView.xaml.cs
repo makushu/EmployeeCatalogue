@@ -170,7 +170,6 @@ namespace EmployeeCatalogue3.View
             try
             {
                 btnShowAdd.IsEnabled = false;
-                //  SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "UPDATE Employee SET Name='" + txtEditName.Text.ToString() + "',Surname='" + txtEditSurname.Text.ToString() + "',DateOfBirth='" + dpEditDateOfBirth.Text.ToString() + "',Gender='" + cboEditGender.Text.ToString() + "',HomeAddress='" + txtEditHomeAddress.Text.ToString() + "' WHERE EmployeeId ='" + txtEditEmployeeId.Text.ToString() + "' ";
 
                 cmd.Connection = con;
@@ -261,14 +260,8 @@ namespace EmployeeCatalogue3.View
             {
                 btnShowAdd.IsEnabled = false;
                   SqlCommand cmd = new SqlCommand();
-               cmd.CommandText = "SELECT * FROM Employee WHERE Name LIKE'" + txtSearchEmployeee.Text.ToString() + "%" + "' ";
 
-               
-
-             //   cmd.CommandText = "SELECT * FROM Employee WHERE Name LIKE'" + txtSearchEmployeee.Text.ToString() + "%" + "OR Surname LIKE " +
-              //     txtSearchEmployeee.Text.ToString() + "%" + "' ";
-
-
+                cmd.CommandText = "SELECT * FROM Employee WHERE Name LIKE'" + "%" + txtSearchEmployeee.Text.ToString() + "%" + "' OR Surname LIKE '" + "%" + txtSearchEmployeee.Text.ToString() + "%" + "' OR HomeAddress LIKE '" + "%" + txtSearchEmployeee.Text.ToString() + "%" + "' ";
 
                 cmd.Connection = con;
                 cmd.ExecuteNonQuery();
@@ -277,7 +270,6 @@ namespace EmployeeCatalogue3.View
                 da.Fill(dt);
 
                 employeeGrid.ItemsSource = dt.DefaultView;
-             //   MessageBox.Show(cmd.CommandText);
             }
 
             catch (Exception ex)
