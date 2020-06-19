@@ -7,6 +7,53 @@ using System.Threading.Tasks;
 
 namespace EmployeeCatalogue3
 {
+
+    public class Employee
+    {
+        private string id;
+        private string name;
+        private string surname;
+        private string dateOfBirth;
+        private string gender;
+        private string homeAddress;
+        public string Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public string Surname
+        {
+            get { return surname; }
+            set { surname = value; }
+        }
+
+        public string DateOfBirth
+        {
+            get { return dateOfBirth; }
+            set { dateOfBirth = value; }
+        }
+
+        public string Gender
+        {
+            get { return gender; }
+            set { gender = value; }
+        }
+
+        public string HomeAddress
+        {
+            get { return homeAddress; }
+            set { homeAddress = value; }
+        }
+    }
+
+    /*
     class EmployeeModel : INotifyPropertyChanged
     {
 
@@ -73,99 +120,99 @@ namespace EmployeeCatalogue3
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        */
 
 
-
-        /*
-         * 
-         * 
-        public string Name
+    /*
+     * 
+     * 
+    public string Name
+    {
+        get => this.name;
+        set
         {
-            get => this.name;
-            set
-            {
-                if (name == value) // check if value changed
-                    return; // do nothing if value same
+            if (name == value) // check if value changed
+                return; // do nothing if value same
 
-                name = value; // change value
-                OnPropertyChanged("name"); // pass changed property name
-            }
+            name = value; // change value
+            OnPropertyChanged("name"); // pass changed property name
         }
+    }
 
-        public string Surname
+    public string Surname
+    {
+        get => this.surname;
+        set
         {
-            get => this.surname;
-            set
-            {
-                if (surname == value) // check if value changed
-                    return; // do nothing if value same
+            if (surname == value) // check if value changed
+                return; // do nothing if value same
 
-                surname = value; // change value
-                OnPropertyChanged("surname"); // pass changed property name
-            }
+            surname = value; // change value
+            OnPropertyChanged("surname"); // pass changed property name
         }
+    }
 
-        public string DateOfBirth
+    public string DateOfBirth
+    {
+        get => this.dateOfBirth;
+        set
         {
-            get => this.dateOfBirth;
-            set
-            {
-                if (dateOfBirth == value) // check if value changed
-                    return; // do nothing if value same
+            if (dateOfBirth == value) // check if value changed
+                return; // do nothing if value same
 
-                dateOfBirth = value; // change value
-                OnPropertyChanged("dateOfBirth"); // pass changed property name
-            }
+            dateOfBirth = value; // change value
+            OnPropertyChanged("dateOfBirth"); // pass changed property name
         }
+    }
 
-        public string Gender
+    public string Gender
+    {
+        get => this.gender;
+        set
         {
-            get => this.gender;
-            set
-            {
-                if (gender == value) // check if value changed
-                    return; // do nothing if value same
+            if (gender == value) // check if value changed
+                return; // do nothing if value same
 
-                gender = value; // change value
-                OnPropertyChanged("gender"); // pass changed property name
-            }
+            gender = value; // change value
+            OnPropertyChanged("gender"); // pass changed property name
         }
+    }
 
-        /*
-       public enum Gender
+    /*
+   public enum Gender
+    {
+        Male,
+        Female
+    }
+
+
+    public string HomeAddress
+    {
+        get => this.homeAddress;
+        set
         {
-            Male,
-            Female
-        }
-        
+            if (homeAddress == value) // check if value changed
+                return; // do nothing if value same
 
-        public string HomeAddress
-        {
-            get => this.homeAddress;
-            set
-            {
-                if (homeAddress == value) // check if value changed
-                    return; // do nothing if value same
-
-                homeAddress = value; // change value
-                OnPropertyChanged("homeAddress"); // pass changed property name
-            }
-        }
-
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        // this method raises PropertyChanged event
-        protected void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null) // if there is any subscribers 
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            homeAddress = value; // change value
+            OnPropertyChanged("homeAddress"); // pass changed property name
         }
     }
 
 
 
-
-         */
+    public event PropertyChangedEventHandler PropertyChanged;
+    // this method raises PropertyChanged event
+    protected void OnPropertyChanged(string propertyName)
+    {
+        if (PropertyChanged != null) // if there is any subscribers 
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
     }
 }
+
+
+
+
+     */
+}
+

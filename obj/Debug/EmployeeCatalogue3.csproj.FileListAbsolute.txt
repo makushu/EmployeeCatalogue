@@ -15,3 +15,4 @@ C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3
 C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3.csproj.CoreCompileInputs.cache
 C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3.exe
 C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\EmployeeCatalogue3.pdb
+C:\Users\bbdnet2051\source\repos\EmployeeCatalogue3\obj\Debug\GeneratedInternalTypeHelper.g.cs
