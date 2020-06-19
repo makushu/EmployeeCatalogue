@@ -45,9 +45,23 @@ namespace EmployeeCatalogue3.View
 
         private void bindDataGrid()
         {
-            DataContext = new gridShow(employeeGrid);
+            DataContext = new showEmployees(grdEmployee);
         }
 
+        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new addEmployee(grdEmployee, btnShowEdit, txtAddName, txtAddSurname, dpAddDateOfBirth, cboAddGender, txtAddHomeAddress);
+        }
+
+        private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new editEmployee(grdEmployee, btnShowAdd, txtEditName, txtEditSurname, dpEditDateOfBirth, cboEditGender, txtEditHomeAddress, txtEditEmployeeId);
+        }
+
+        private void txtEmployeeSearch(object sender, KeyEventArgs e)
+        {
+            DataContext = new searchEmployee(grdEmployee, btnShowAdd, btnShowEdit, txtSearchEmployeee);
+        }
 
         private void btnShowAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -59,50 +73,22 @@ namespace EmployeeCatalogue3.View
             DataContext = new buttonShowGrid(grdEdit);
         }
 
-
-
-        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
-        {
-
-
-            DataContext = new addEmployee(employeeGrid, btnShowEdit, txtAddName, txtAddSurname, dpAddDateOfBirth, cboAddGender, txtAddHomeAddress);
-
-
-
-
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-
-
-            DataContext = new editEmployee(employeeGrid, btnShowAdd, txtEditName, txtEditSurname, dpEditDateOfBirth, cboEditGender, txtEditHomeAddress, txtEditEmployeeId);
-
-
-
-        }
-
         private void ctmView(object sender, RoutedEventArgs e)
         {
 
-            DataContext = new contextMenuView(employeeGrid);
+            DataContext = new contextMenuView(grdEmployee);
         }
-
-        /*   private void Button_Click_3(object sender, RoutedEventArgs e)
-           {
-
-           }
-           */
 
         private void ctmEdit(object sender, RoutedEventArgs e)
         {
 
-            DataContext = new buttonShowGrid(grdEdit);
+            // DataContext = new buttonShowGrid(grdEdit);
+            DataContext = new contextMenuEdit(grdEdit, txtEditEmployeeId);
             Binding binding = new Binding();
 
             //  string id;
 
-            DataRowView dataRowView = (DataRowView)employeeGrid.SelectedItem;
+            DataRowView dataRowView = (DataRowView)grdEmployee.SelectedItem;
             /*  binding.Source = (dataRowView["EmployeeId"]).ToString();
               id.SetBinding(Label.ContentProperty, binding);
   */
@@ -121,14 +107,6 @@ namespace EmployeeCatalogue3.View
 
             //            DataContext = new contextMenuEdit(grdEdit, employeeGrid, txtEditEmployeeId, txtEditName, txtEditSurname, dpEditDateOfBirth, cboEditGender, txtEditHomeAddress);
 
-
-
-        }
-
-
-        private void txtEmployeeSearch(object sender, KeyEventArgs e)
-        {
-            DataContext = new searchEmployee(employeeGrid, btnShowAdd, btnShowEdit, txtSearchEmployeee);
         }
 
         private void btnCloseAddGrid_Click(object sender, RoutedEventArgs e)
@@ -141,5 +119,7 @@ namespace EmployeeCatalogue3.View
         {
             DataContext = new closeGrid(grdEdit);
         }
+
+        
     }
 }

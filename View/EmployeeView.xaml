@@ -81,10 +81,7 @@
             
             
             <Border BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30">
-                <DataGrid x:Name="employeeGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="167" Margin="10,38,0,0" VerticalAlignment="Top" Width="800">
-
-
-                    
+                <DataGrid x:Name="grdEmployee" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="167" Margin="10,38,0,0" VerticalAlignment="Top" Width="800">
 
 
                     <DataGrid.ContextMenu>
@@ -98,7 +95,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Name}" CellStyle="{StaticResource CellBackgroundColor}" Header="NAME" Width="160"/>
                         <DataGridTextColumn Binding="{Binding Surname}" CellStyle="{StaticResource CellBackgroundColor}" Header="SURNAME" Width="160"/>
-                        <DataGridTextColumn Binding="{Binding DateOfBirth}" CellStyle="{StaticResource CellBackgroundColor}" Header="DATE OF BIRTH" Width="AUTO"/>
+                        <DataGridTextColumn Binding="{Binding DateOfBirth, StringFormat={}{0:dd/MM/yyyy}}" CellStyle="{StaticResource CellBackgroundColor}" Header="DATE OF BIRTH" Width="AUTO"/>
                         <DataGridTextColumn Binding="{Binding Gender}" CellStyle="{StaticResource CellBackgroundColor}" Header="GENDER" Width="AUTO" x:Name="gender"/>
                         <DataGridTextColumn Binding="{Binding HomeAddress}" CellStyle="{StaticResource CellBackgroundColor}" Header="HOME ADDRESS" Width="325"/>
                     </DataGrid.Columns>
@@ -160,8 +157,8 @@
 
                 <Label Content="Home Address" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="txtEditHomeAddress" Text="{Binding HomeAddress}" ToolTip="Please enter employee home address" HorizontalAlignment="Left" Height="23" Margin="95,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Button Style="{StaticResource btn}" Content="Edit Employee" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="9,206,0,0" Click="Button_Click_2"/>
-                <Button Style="{StaticResource btn}" x:Name="btnCloseEditGrid"  Content="Close" HorizontalAlignment="Left" Margin="140,206,0,0" VerticalAlignment="Top" Width="75" Click="btnCloseEditGrid_Click"/>
+                <Button x:Name="btnEditEmployee" Style="{StaticResource btn}" Content="Edit Employee" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="9,206,0,0" Click="btnEditEmployee_Click"/>
+                <Button x:Name="btnCloseEditGrid" Style="{StaticResource btn}"  Content="Close" HorizontalAlignment="Left" Margin="140,206,0,0" VerticalAlignment="Top" Width="75" Click="btnCloseEditGrid_Click"/>
 
             </Grid>
             
