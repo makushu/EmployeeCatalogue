@@ -278,7 +278,6 @@ namespace EmployeeCatalogue3
         {
             public closeGrid(Grid grid)
             {
-
                 grid.Visibility = Visibility.Collapsed;
             }
         }

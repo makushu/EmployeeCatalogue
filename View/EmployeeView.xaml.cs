@@ -136,5 +136,10 @@ namespace EmployeeCatalogue3.View
             DataContext = new closeGrid(grdAdd);
 
         }
+
+        private void btnCloseEditGrid_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new closeGrid(grdEdit);
+        }
     }
 }
