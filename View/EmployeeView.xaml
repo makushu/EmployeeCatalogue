@@ -8,18 +8,31 @@
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       Title="EmployeeView"
-      Background="Black" >
+      Background="Black">
 
     
-    
+
     <Page.Resources>
+
+        
+
+
+        <Style TargetType="DataGridColumnHeader" x:Key="header">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+
+
+
         <Style TargetType="Button" x:Key="btn">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
                             CornerRadius="5"
-                            BorderThickness="1">
+                            BorderThickness="1"
+                              BorderBrush ="Blue"
+                            >
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
                             </ContentPresenter>
                         </Border>
@@ -28,8 +41,12 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="DarkGray"/>
-                    <Setter Property="Foreground" Value="#fff"/>
+                    <Setter Property="Background" Value="#0099CC"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Background" Value="Pink"/>
+                    <Setter Property="Foreground" Value="Black"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -40,7 +57,7 @@
             <Setter Property="Foreground" Value="Blue"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Gender}" Value="Male">
-                    <Setter Property="Background" Value="Blue"/>
+                    <Setter Property="Background" Value="#0099CC"/>
                     <Setter Property="Foreground" Value="Black"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Gender}" Value="Female">
@@ -49,42 +66,51 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
+
+
+
+
+     
+
+
+
+        <Style TargetType="Label" x:Key="label">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
     </Page.Resources>
 
 
-
-    <Border BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30">
-        <Grid HorizontalAlignment="Center">
-
-            <Rectangle Width="800" Height="450">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                        <GradientStop Color="Blue" Offset="0" />
-                        <GradientStop Color="Red" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
+    <Grid HorizontalAlignment="Center">
 
 
+
+
+
+
+        <TextBox x:Name="txtSearchEmployeee"  ToolTip="Search for employee details" HorizontalAlignment="Left" Height="23" Margin="670,6,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyUp="txtEmployeeSearch">
+            <TextBox.Background>
+                <ImageBrush ImageSource="/Images/search.png" AlignmentX="Left" ></ImageBrush>
+            </TextBox.Background>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+               
+            </TextBox.Resources>
+        </TextBox>
+        
+
+
+        <DataGrid x:Name="grdEmployee" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="167" Margin="10,38,0,0" VerticalAlignment="Top" Width="800">
+
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </DataGrid.Resources>
             
-            
-            <TextBox x:Name="txtSearchEmployeee" ToolTip="Search for employee details" HorizontalAlignment="Left" Height="23" Margin="670,6,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyUp="txtEmployeeSearch">
-                <TextBox.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
-
-            
-            
-            
-            <Border BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,30,30">
-                <DataGrid x:Name="grdEmployee" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="167" Margin="10,38,0,0" VerticalAlignment="Top" Width="800">
-
-
-                    <DataGrid.ContextMenu>
+            <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="View" Click="ctmView"></MenuItem>
                             <MenuItem Header="Edit" Click="ctmEdit" ></MenuItem>
@@ -93,14 +119,14 @@
                     </DataGrid.ContextMenu>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Name}" CellStyle="{StaticResource CellBackgroundColor}" Header="NAME" Width="160"/>
-                        <DataGridTextColumn Binding="{Binding Surname}" CellStyle="{StaticResource CellBackgroundColor}" Header="SURNAME" Width="160"/>
-                        <DataGridTextColumn Binding="{Binding DateOfBirth, StringFormat={}{0:dd/MM/yyyy}}" CellStyle="{StaticResource CellBackgroundColor}" Header="DATE OF BIRTH" Width="AUTO"/>
-                        <DataGridTextColumn Binding="{Binding Gender}" CellStyle="{StaticResource CellBackgroundColor}" Header="GENDER" Width="AUTO" x:Name="gender"/>
-                        <DataGridTextColumn Binding="{Binding HomeAddress}" CellStyle="{StaticResource CellBackgroundColor}" Header="HOME ADDRESS" Width="325"/>
+                        <DataGridTextColumn Binding="{Binding Name}" CellStyle="{StaticResource CellBackgroundColor}"  Header="NAME" Width="160" HeaderStyle="{StaticResource header}"/>
+                <DataGridTextColumn Binding="{Binding Surname}" CellStyle="{StaticResource CellBackgroundColor}" Header="SURNAME" Width="160" HeaderStyle="{StaticResource header}"/>
+                <DataGridTextColumn Binding="{Binding DateOfBirth, StringFormat={}{0:dd/MM/yyyy}}" CellStyle="{StaticResource CellBackgroundColor}" Header="DATE OF BIRTH" Width="AUTO" HeaderStyle="{StaticResource header}"/>
+                <DataGridTextColumn Binding="{Binding Gender}" CellStyle="{StaticResource CellBackgroundColor}" Header="GENDER" Width="AUTO" x:Name="gender" HeaderStyle="{StaticResource header}"/>
+                <DataGridTextColumn Binding="{Binding HomeAddress}" CellStyle="{StaticResource CellBackgroundColor}" Header="HOME ADDRESS" Width="300" HeaderStyle="{StaticResource header}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-            </Border>
+           
 
             <Button x:Name="btnShowAdd" Style="{StaticResource btn}" Command="{Binding Adding}" ToolTip="Double click to add" Content="Add" HorizontalAlignment="Left" Margin="10,214,0,0" VerticalAlignment="Top" Width="75" Click="btnShowAdd_Click"/>
             <Button x:Name="btnShowEdit" Style="{StaticResource btn}" ToolTip="Double click to edit" Content="Edit" HorizontalAlignment="Left" Margin="715,214,0,0" VerticalAlignment="Top" Width="75" Click="btnShowEdit_Click"/>
@@ -115,20 +141,20 @@
                     <RowDefinition Height="47*"/>
                     <RowDefinition Height="62*"/>
                 </Grid.RowDefinitions>
-                <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.615,0.617" Margin="10,0,0,0"/>
+                <Label Content="Name" Style="{StaticResource label}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.615,0.617" Margin="10,0,0,0"/>
                 <TextBox x:Name="txtAddName" ToolTip="Please enter employee name" HorizontalAlignment="Left" Height="26" Margin="95,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Label Content="Surname" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
+            <Label Content="Surname" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="txtAddSurname" ToolTip="Please enter employee surname" HorizontalAlignment="Left" Height="23" Margin="95,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Label Content="Date Of Birth" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+            <Label Content="Date Of Birth" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
                 <DatePicker x:Name="dpAddDateOfBirth" ToolTip="Please select employee date of birth" DisplayDateStart="1/1/1955" DisplayDateEnd="12/31/2005" HorizontalAlignment="Left" Margin="95,76,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-                <Label Content="Gender" HorizontalAlignment="Left" Margin="10,12.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+            <Label Content="Gender" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,12.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
 
                 <ComboBox Name="cboAddGender" ToolTip="Please select employee gender" HorizontalAlignment="Left" Margin="95,15.4,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1">
                     <ComboBoxItem Content="Female"/>
                     <ComboBoxItem Content="Male"/>
                 </ComboBox>
 
-                <Label Content="Home Address" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+            <Label Content="Home Address" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Grid.Row="2"/>
                 <TextBox x:Name="txtAddHomeAddress" ToolTip="Please enter employee home address" HorizontalAlignment="Left" Height="23" Margin="95,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
                 <Button x:Name="btnAddEmployee" Style="{StaticResource btn}" Content="Add Employee" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="10,33,0,0" Grid.Row="2" Click="btnAddEmployee_Click"/>
                 <Button x:Name="btnCloseAddGrid" Style="{StaticResource btn}" Content="Close" HorizontalAlignment="Left" Margin="140,33,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.936,0.51" Click="btnCloseAddGrid_Click"/>
@@ -139,23 +165,23 @@
 
 
             <Grid x:Name="grdEdit" HorizontalAlignment="Left" Height="269" Margin="484,215,0,0" VerticalAlignment="Top" Width="231" Visibility="Collapsed">
-                <Label Content="Employee Id"  HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.615,0.617" Margin="10,0,0,0"/>
+            <Label Content="Employee Id" Style="{StaticResource label}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.615,0.617" Margin="10,0,0,0"/>
 
                 <TextBox Text="{Binding Id}" x:Name="txtEditEmployeeId" ToolTip="Please enter employee Id" HorizontalAlignment="Left" Height="26" Margin="95,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Label Content="Name" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
+            <Label Content="Name" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
                 <TextBox Text="{Binding Name}" x:Name="txtEditName" ToolTip="Please enter employee name" HorizontalAlignment="Left" Height="23" Margin="95,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Label Content="Surname" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top"/>
+            <Label Content="Surname" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top"/>
                 <TextBox Text="{Binding Surname}" x:Name="txtEditSurname" ToolTip="Please enter employee surname" HorizontalAlignment="Left" Height="23" Margin="95,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Label Content="Date Of Birth" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
+            <Label Content="Date Of Birth" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
                 <DatePicker  Text="{Binding DateOfBirth}" x:Name="dpEditDateOfBirth" ToolTip="Please select employee date of birth" DisplayDateStart="1/1/1955" DisplayDateEnd="12/31/2005" HorizontalAlignment="Left" Margin="95,107,0,0" VerticalAlignment="Top"/>
-                <Label Content="Gender"  HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top"/>
+            <Label Content="Gender" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top"/>
 
                 <ComboBox Name="cboEditGender" Text="{Binding Gender}"  ToolTip="Please select employee gender" HorizontalAlignment="Left" Margin="95,145,0,0" VerticalAlignment="Top" Width="120">
                     <ComboBoxItem Content="Female"/>
                     <ComboBoxItem Content="Male"/>
                 </ComboBox>
 
-                <Label Content="Home Address" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top"/>
+            <Label Content="Home Address" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="txtEditHomeAddress" Text="{Binding HomeAddress}" ToolTip="Please enter employee home address" HorizontalAlignment="Left" Height="23" Margin="95,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <Button x:Name="btnEditEmployee" Style="{StaticResource btn}" Content="Edit Employee" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="9,206,0,0" Click="btnEditEmployee_Click"/>
                 <Button x:Name="btnCloseEditGrid" Style="{StaticResource btn}"  Content="Close" HorizontalAlignment="Left" Margin="140,206,0,0" VerticalAlignment="Top" Width="75" Click="btnCloseEditGrid_Click"/>
@@ -166,5 +192,5 @@
             
             
         </Grid>
-    </Border>
+ 
 </Page>
