@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,6 +31,7 @@ namespace EmployeeCatalogue3
                 sqlConnection.Open();
                 try
                 {
+                    
                     SqlCommand sqlCommand = new SqlCommand();
 
                     sqlCommand.CommandText = "SELECT * FROM [Employee]";
@@ -77,24 +79,48 @@ namespace EmployeeCatalogue3
 
                 try
                 {
-                    SqlCommand sqlCommand = new SqlCommand();
+                    if (!Regex.IsMatch(name.Text, @"[a-zA-Z,.-]{3,30}"))
+                    {
+                        MessageBox.Show("Please enter the employee's correct name");
+                    }
+                    else if (!Regex.IsMatch(surname.Text, @"[a-zA-Z,.-]{3,30}"))
+                    {
+                        MessageBox.Show("Please enter the employee's correct surname");
+                    }
+                    else if (dateOfBirth.Text.Length == 0)
+                    {
+                        MessageBox.Show("Please select the employee's date of birth");
+                    }
+                    else if (gender.Text.Length == 0)
+                    {
+                        MessageBox.Show("Please select the employee's gender");
+                    }
+                    else if (!Regex.IsMatch(homeAddress.Text, @"[a-zA-Z,.-]{3,100}"))
+                    {
+                        MessageBox.Show("Please enter the employee's correct home address");
+                    }
+                    else
+                    {
 
-                    button.IsEnabled = false;
-                    sqlCommand.CommandText = "INSERT INTO Employee(Name, Surname, DateOfBirth, Gender, HomeAddress) VALUES('" + name.Text.ToString() + "', '" + surname.Text.ToString() + "' , '" + dateOfBirth.Text.ToString() + "', '" + gender.Text.ToString() + "',  '" + homeAddress.Text.ToString() + "')";
+                        SqlCommand sqlCommand = new SqlCommand();
 
-                    sqlCommand.Connection = sqlConnection;
-                    sqlCommand.ExecuteNonQuery();
-                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-                    DataTable dataTable = new DataTable("employee");
-                    sqlDataAdapter.Fill(dataTable);
+                        button.IsEnabled = false;
+                        sqlCommand.CommandText = "INSERT INTO Employee(Name, Surname, DateOfBirth, Gender, HomeAddress) VALUES('" + name.Text.ToString() + "', '" + surname.Text.ToString() + "' , '" + dateOfBirth.Text.ToString() + "', '" + gender.Text.ToString() + "',  '" + homeAddress.Text.ToString() + "')";
 
-                    dataGrid.ItemsSource = dataTable.DefaultView;
-                    MessageBox.Show(name.Text.ToString() + " " + surname.Text.ToString() + " has been successfully added");
-                    name.Text = "";
-                    surname.Text = "";
-                    dateOfBirth.Text = "";
-                    gender.Text = "";
-                    homeAddress.Text = "";
+                        sqlCommand.Connection = sqlConnection;
+                        sqlCommand.ExecuteNonQuery();
+                        SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                        DataTable dataTable = new DataTable("employee");
+                        sqlDataAdapter.Fill(dataTable);
+
+                        dataGrid.ItemsSource = dataTable.DefaultView;
+                        MessageBox.Show(name.Text.ToString() + " " + surname.Text.ToString() + " has been successfully added");
+                        name.Text = "";
+                        surname.Text = "";
+                        dateOfBirth.Text = "";
+                        gender.Text = "";
+                        homeAddress.Text = "";
+                    }   
                 }
 
                 catch (Exception ex)
@@ -122,19 +148,47 @@ namespace EmployeeCatalogue3
 
                 try
                 {
-                    SqlCommand sqlCommand = new SqlCommand();
 
-                    button.IsEnabled = false;
-                    sqlCommand.CommandText = "UPDATE Employee SET Name='" + name.Text.ToString() + "',Surname='" + surname.Text.ToString() + "',DateOfBirth='" + dateOfBirth.Text.ToString() + "',Gender='" + gender.Text.ToString() + "',HomeAddress='" + homeAddress.Text.ToString() + "' WHERE EmployeeId ='" + id.Text.ToString() + "' ";
+                    if (!Regex.IsMatch(name.Text, @"[a-zA-Z,.-]{3,30}"))
+                    {
 
-                    sqlCommand.Connection = sqlConnection;
-                    sqlCommand.ExecuteNonQuery();
-                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-                    DataTable dataTable = new DataTable("employee");
-                    sqlDataAdapter.Fill(dataTable);
+                        MessageBox.Show("Please enter the employee's correct name");
 
-                    dataGrid.ItemsSource = dataTable.DefaultView;
-                    MessageBox.Show(name.Text.ToString() + " " + surname.Text.ToString() + " has been successfully edited");
+                    }
+
+
+                    else if (!Regex.IsMatch(surname.Text, @"[a-zA-Z,.-]{3,30}"))
+                    {
+                        MessageBox.Show("Please enter the employee's correct surname");
+                    }
+                    else if (dateOfBirth.Text.Length == 0)
+                    {
+                        MessageBox.Show("Please select the employee's date of birth");
+                    }
+                    else if (gender.Text.Length == 0)
+                    {
+                        MessageBox.Show("Please select the employee's gender");
+                    }
+                    else if (!Regex.IsMatch(homeAddress.Text, @"[a-zA-Z,.-]{3,100}"))
+                    {
+                        MessageBox.Show("Please enter the employee's correct home address");
+                    }
+                    else
+                    {
+                        SqlCommand sqlCommand = new SqlCommand();
+
+                        button.IsEnabled = false;
+                        sqlCommand.CommandText = "UPDATE Employee SET Name='" + name.Text.ToString() + "',Surname='" + surname.Text.ToString() + "',DateOfBirth='" + dateOfBirth.Text.ToString() + "',Gender='" + gender.Text.ToString() + "',HomeAddress='" + homeAddress.Text.ToString() + "' WHERE EmployeeId ='" + id.Text.ToString() + "' ";
+
+                        sqlCommand.Connection = sqlConnection;
+                        sqlCommand.ExecuteNonQuery();
+                        SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                        DataTable dataTable = new DataTable("employee");
+                        sqlDataAdapter.Fill(dataTable);
+
+                        dataGrid.ItemsSource = dataTable.DefaultView;
+                        MessageBox.Show(name.Text.ToString() + " " + surname.Text.ToString() + " has been successfully edited");
+                    }
                 }
 
                 catch (Exception ex)
