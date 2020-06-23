@@ -27,67 +27,71 @@ namespace EmployeeCatalogue3.View
     /// </summary>
     public partial class EmployeeView : Page
     {
-
+        Employee employee = new Employee();
         public EmployeeView()
         {
 
             InitializeComponent();
             bindDataGrid();
-            //   EmployeeViewModel employeeViewModel = new EmployeeViewModel();
-            // MessageBox.Show(employeeViewModel.Hey());
-            //EmployeeViewModel.StillVoid();
-            //    employeeViewModel.bindDataGrid();
-            //    CheckVM checkVM = new CheckVM();
-
 
         }
 
-
         private void bindDataGrid()
         {
-            DataContext = new showEmployees(grdEmployee);
+            DataContext = new ShowEmployees(grdEmployee);
         }
 
         private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new addEmployee(grdEmployee, btnShowEdit, txtAddName, txtAddSurname, dpAddDateOfBirth, cboAddGender, txtAddHomeAddress);
+           
+            // DataContext = new AddEmployee(grdEmployee, btnShowEdit, txtAddName, txtAddSurname, dpAddDateOfBirth, cboAddGender, txtAddHomeAddress);
+            MessageBox.Show(employee.Name + " " + employee.Surname);
+
         }
 
         private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new editEmployee(grdEmployee, btnShowAdd, txtEditName, txtEditSurname, dpEditDateOfBirth, cboEditGender, txtEditHomeAddress, txtEditEmployeeId);
+            this.DataContext = employee;
+
+            // DataContext = new EditEmployee(grdEmployee, btnShowAdd, txtEditName, txtEditSurname, dpEditDateOfBirth, cboEditGender, txtEditHomeAddress, txtEditEmployeeId);
+            //  DataContext = new EditEmployee();//(grdEmployee, btnShowAdd);
+
+            // Employee employee = new Employee();
+            MessageBox.Show(employee.Name + " " + employee.Surname + " " + employee.DateOfBirth + " " + employee.Gender + " " + employee.HomeAddress);
+
+          
         }
+
+
+
 
         private void txtEmployeeSearch(object sender, KeyEventArgs e)
         {
-            DataContext = new searchEmployee(grdEmployee, btnShowAdd, btnShowEdit, txtSearchEmployeee);
+           DataContext = new SearchEmployee(grdEmployee, btnShowAdd, btnShowEdit, txtSearchEmployeee);
         }
 
         private void btnShowAdd_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new buttonShowGrid(grdAdd);
+           DataContext = new ButtonShowGrid(grdAdd);
         }
 
         private void btnShowEdit_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new buttonShowGrid(grdEdit);
+            DataContext = new ButtonShowGrid(grdEdit);
         }
 
         private void ctmView(object sender, RoutedEventArgs e)
         {
 
-            DataContext = new contextMenuView(grdEmployee);
+            DataContext = new ContextMenuView(grdEmployee);
         }
 
         private void ctmEdit(object sender, RoutedEventArgs e)
         {
 
             // DataContext = new buttonShowGrid(grdEdit);
-            DataContext = new contextMenuEdit(grdEdit, txtEditEmployeeId);
-            Binding binding = new Binding();
-
-            //  string id;
-
+            DataContext = new ContextMenuEdit(grdEdit, txtEditEmployeeId);
+           
             DataRowView dataRowView = (DataRowView)grdEmployee.SelectedItem;
             /*  binding.Source = (dataRowView["EmployeeId"]).ToString();
               id.SetBinding(Label.ContentProperty, binding);
@@ -111,13 +115,13 @@ namespace EmployeeCatalogue3.View
 
         private void btnCloseAddGrid_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new closeGrid(grdAdd);
+            DataContext = new CloseGrid(grdAdd);
 
         }
 
         private void btnCloseEditGrid_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new closeGrid(grdEdit);
+            DataContext = new CloseGrid(grdEdit);
         }
 
         

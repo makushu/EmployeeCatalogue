@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EmployeeCatalogue3
 {
 
-    public class Employee
+    public class Employee : INotifyPropertyChanged
     {
         private string id;
         private string name;
@@ -19,39 +19,68 @@ namespace EmployeeCatalogue3
         public string Id
         {
             get { return id; }
-            set { id = value; }
+            set
+            {
+                id = value;
+                RaisePropertyChanged("Id");
+            }
         }
 
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set {
+                name = value;
+                RaisePropertyChanged("Name");
+            }
         }
 
         public string Surname
         {
             get { return surname; }
-            set { surname = value; }
+            set {
+                surname = value;
+                RaisePropertyChanged("Surname");
+            }
         }
 
         public string DateOfBirth
         {
             get { return dateOfBirth; }
-            set { dateOfBirth = value; }
+            set {
+                dateOfBirth = value;
+                RaisePropertyChanged("DateOfBirth");
+            }
         }
 
         public string Gender
         {
             get { return gender; }
-            set { gender = value; }
+            set { gender = value;
+                RaisePropertyChanged("Gender");
+            }
         }
 
         public string HomeAddress
         {
             get { return homeAddress; }
-            set { homeAddress = value; }
+            set { homeAddress = value;
+                RaisePropertyChanged("HomeAddress");
+            }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
+}
 
     /*
     class EmployeeModel : INotifyPropertyChanged
@@ -213,6 +242,6 @@ namespace EmployeeCatalogue3
 
 
 
-     */
+     
 }
-
+*/
