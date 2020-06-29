@@ -47,9 +47,8 @@ namespace EmployeeCatalogue3.View
         {
 
 
-            DataContext = new AddEmployee(grdEmployee, btnShowEdit);
+       //    DataContext = new AddEmployee(grdEmployee, btnShowEdit);
 
-            // MessageBox.Show(employee.Name + " " + employee.Surname + " " + employee.DateOfBirth + " " + employee.Gender + " " + employee.HomeAddress);
             SqlConnection sqlConnection = new SqlConnection();
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
             sqlConnection.Open();
@@ -93,11 +92,7 @@ namespace EmployeeCatalogue3.View
 
                     grdEmployee.ItemsSource = dataTable.DefaultView;
                     MessageBox.Show(employee.Name + " " + employee.Surname + " has been successfully added");
-                    employee.Name = "";
-                    employee.Surname = "";
-                    employee.DateOfBirth = "";
-                    employee.Gender = "";
-                    employee.HomeAddress = "";
+                   
                 }
             }
 
@@ -110,20 +105,16 @@ namespace EmployeeCatalogue3.View
             {
                 sqlConnection.Close();
             }
-
+            
         }
 
         private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
         {
 
-            // DataContext = new EditEmployee(grdEmployee, btnShowAdd, txtEditName, txtEditSurname, dpEditDateOfBirth, cboEditGender, txtEditHomeAddress, txtEditEmployeeId);
-          //  DataContext = new EditEmployee();//(grdEmployee, btnShowAdd);
+            //    DataContext = new EditEmployee(grdEmployee, btnShowAdd);
 
-            // Employee employee = new Employee();
-          //  MessageBox.Show(employee.Name + " " + employee.Surname + " " + employee.DateOfBirth + " " + employee.Gender + " " + employee.HomeAddress);
 
-            
-               SqlConnection sqlConnection = new SqlConnection();
+            SqlConnection sqlConnection = new SqlConnection();
               sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
               sqlConnection.Open();
             
@@ -168,12 +159,12 @@ namespace EmployeeCatalogue3.View
 
         private void btnShowAdd_Click(object sender, RoutedEventArgs e)
         {
-           // DataContext = new ButtonShowGrid(grdAdd);
+            DataContext = new ButtonShowGrid(grdAdd);
         }
 
         private void btnShowEdit_Click(object sender, RoutedEventArgs e)
         {
-           // DataContext = new ButtonShowGrid(grdEdit);
+            DataContext = new ButtonShowGrid(grdEdit);
         }
 
         private void ctmView(object sender, RoutedEventArgs e)
@@ -185,16 +176,9 @@ namespace EmployeeCatalogue3.View
         private void ctmEdit(object sender, RoutedEventArgs e)
         {
 
-            // DataContext = new buttonShowGrid(grdEdit);
-            //    DataContext = new ContextMenuEdit(grdEdit, txtEditEmployeeId);
-            // Binding binding = new Binding();
-
-            //  string id;
-
+      
             DataRowView dataRowView = (DataRowView)grdEmployee.SelectedItem;
-            /*  binding.Source = (dataRowView["EmployeeId"]).ToString();
-              id.SetBinding(Label.ContentProperty, binding);
-  */
+          
 
             employee.Id = (dataRowView["EmployeeId"]).ToString();
             employee.Name = (dataRowView["Name"]).ToString();
@@ -202,10 +186,6 @@ namespace EmployeeCatalogue3.View
             employee.DateOfBirth = (dataRowView["DateOfBirth"]).ToString();
             employee.Gender = (dataRowView["Gender"]).ToString();
             employee.HomeAddress = (dataRowView["HomeAddress"]).ToString();
-
-
-
-            //            DataContext = new contextMenuEdit(grdEdit, employeeGrid, txtEditEmployeeId, txtEditName, txtEditSurname, dpEditDateOfBirth, cboEditGender, txtEditHomeAddress);
 
         }
 

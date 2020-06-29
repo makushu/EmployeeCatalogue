@@ -58,7 +58,6 @@
     </ApplicationDefinition>
     <Compile Include="EmployeeModel.cs" />
     <Compile Include="EmployeeViewModel.cs" />
-    <Compile Include="RelayCommands.cs" />
     <Compile Include="View\EmployeeView.xaml.cs">
       <DependentUpon>EmployeeView.xaml</DependentUpon>
     </Compile>

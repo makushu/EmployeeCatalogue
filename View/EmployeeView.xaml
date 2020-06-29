@@ -120,21 +120,21 @@
                     <RowDefinition Height="62*"/>
                 </Grid.RowDefinitions>
                 <Label Content="Name" Style="{StaticResource label}" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.615,0.617" Margin="10,0,0,0"/>
-                <TextBox Text="{Binding Name}"  x:Name="txtAddName" ToolTip="Please enter employee name" HorizontalAlignment="Left" Height="26" Margin="95,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Text="{Binding Name, Mode = OneWayToSource}"  x:Name="txtAddName" ToolTip="Please enter employee name" HorizontalAlignment="Left" Height="26" Margin="95,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <Label Content="*" Foreground="Red" FontSize="20" HorizontalAlignment="Left" Margin="220,0,0,0" VerticalAlignment="Top" Width="18" Height="26"/>
 
                 <Label Content="Surname" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
-                <TextBox Text="{Binding Surname}" x:Name="txtAddSurname" ToolTip="Please enter employee surname" HorizontalAlignment="Left" Height="23" Margin="95,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Text="{Binding Surname, Mode = OneWayToSource}" x:Name="txtAddSurname" ToolTip="Please enter employee surname" HorizontalAlignment="Left" Height="23" Margin="95,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <Label Content="*" Foreground="Red" FontSize="20" HorizontalAlignment="Left" Margin="220,39,0,0" VerticalAlignment="Top" Width="18" Height="26"/>
 
 
                 <Label Content="Date Of Birth" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-                <DatePicker Text="{Binding DateOfBirth}"  x:Name="dpAddDateOfBirth" ToolTip="Please select employee date of birth" DisplayDateStart="1/1/1955" DisplayDateEnd="12/31/2005" HorizontalAlignment="Left" Margin="95,76,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+            <DatePicker Text="{Binding DateOfBirth,  Mode = OneWayToSource}"  x:Name="dpAddDateOfBirth" ToolTip="Please select employee date of birth" DisplayDateStart="1/1/1955" DisplayDateEnd="12/31/2005" HorizontalAlignment="Left" Margin="95,76,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
                 <Label Content="*" Foreground="Red" FontSize="20" HorizontalAlignment="Left" Margin="220,75,0,0" VerticalAlignment="Top" Width="18" Height="26" Grid.RowSpan="2"/>
 
 
                 <Label Content="Gender" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,12.4,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-                <ComboBox Text="{Binding Gender}"  Name="cboAddGender" ToolTip="Please select employee gender" HorizontalAlignment="Left" Margin="95,15.4,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1">
+            <ComboBox Text="{Binding Gender, Mode = OneWayToSource}"  Name="cboAddGender" ToolTip="Please select employee gender" HorizontalAlignment="Left" Margin="95,15.4,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1">
                     <ComboBoxItem Content="Female"/>
                     <ComboBoxItem Content="Male"/>
                 </ComboBox>
@@ -142,7 +142,7 @@
 
 
                 <Label Content="Home Address" Style="{StaticResource label}" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-                <TextBox Text="{Binding HomeAddress}"  x:Name="txtAddHomeAddress" ToolTip="Please enter employee home address" HorizontalAlignment="Left" Height="23" Margin="95,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
+            <TextBox Text="{Binding HomeAddress, Mode = OneWayToSource}"  x:Name="txtAddHomeAddress" ToolTip="Please enter employee home address" HorizontalAlignment="Left" Height="23" Margin="95,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
                 <Label Content="*" Foreground="Red" FontSize="20" HorizontalAlignment="Left" Margin="220,2,0,0" VerticalAlignment="Top" Width="18" Height="26" Grid.Row="2" RenderTransformOrigin="0.725,0.846"/>
 
 
