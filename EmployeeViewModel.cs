@@ -146,14 +146,13 @@ namespace EmployeeCatalogue3
 
         }
 
-
+        
         public class EditEmployee
         {
+            Employee employee = new Employee();
 
-           
-            public EditEmployee()//(DataGrid dataGrid, Button button)
+            public EditEmployee(DataGrid dataGrid, Button button)
             {
-               /*
                 SqlConnection sqlConnection = new SqlConnection();
                 sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
                 sqlConnection.Open();
@@ -163,7 +162,7 @@ namespace EmployeeCatalogue3
 
                     SqlCommand sqlCommand = new SqlCommand();
 
-                    btnShowAdd.IsEnabled = false;
+                    button.IsEnabled = false;
                     sqlCommand.CommandText = "UPDATE Employee SET Name='" + employee.Name + "',Surname='" + employee.Surname + "',DateOfBirth='" + employee.DateOfBirth + "',Gender='" + employee.Gender + "',HomeAddress='" + employee.HomeAddress + "' WHERE EmployeeId ='" + employee.Id + "' ";
 
                     sqlCommand.Connection = sqlConnection;
@@ -172,7 +171,7 @@ namespace EmployeeCatalogue3
                     DataTable dataTable = new DataTable("employee");
                     sqlDataAdapter.Fill(dataTable);
 
-                    grdEmployee.ItemsSource = dataTable.DefaultView;
+                    dataGrid.ItemsSource = dataTable.DefaultView;
                     MessageBox.Show(employee.Name + " " + employee.Surname + " has been successfully edited");
                 }
 
@@ -187,7 +186,6 @@ namespace EmployeeCatalogue3
                     sqlConnection.Close();
                 }
 
-                */
             }
 
         }

@@ -109,44 +109,8 @@ namespace EmployeeCatalogue3.View
         }
 
         private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
-        {
-
-            //    DataContext = new EditEmployee(grdEmployee, btnShowAdd);
-
-
-            SqlConnection sqlConnection = new SqlConnection();
-              sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["employeeConnection"].ConnectionString;
-              sqlConnection.Open();
-            
-              try
-             {
-             
-               SqlCommand sqlCommand = new SqlCommand();
-
-              btnShowAdd.IsEnabled = false;
-               sqlCommand.CommandText = "UPDATE Employee SET Name='" + employee.Name + "',Surname='" + employee.Surname + "',DateOfBirth='" + employee.DateOfBirth + "',Gender='" + employee.Gender + "',HomeAddress='" + employee.HomeAddress + "' WHERE EmployeeId ='" + employee.Id + "' ";
-
-             sqlCommand.Connection = sqlConnection;
-               sqlCommand.ExecuteNonQuery();
-                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-               DataTable dataTable = new DataTable("employee");
-                sqlDataAdapter.Fill(dataTable);
-
-               grdEmployee.ItemsSource = dataTable.DefaultView;
-               MessageBox.Show(employee.Name + " " + employee.Surname + " has been successfully edited");
-             }
-             
-
-             catch (Exception ex)
-             {
-                MessageBox.Show(ex.Message.ToString());
-              }
-
-              finally
-              {
-                  sqlConnection.Close();
-               }
-               
+        { 
+               DataContext = new EditEmployee(grdEmployee, btnShowAdd);
         }
 
 
